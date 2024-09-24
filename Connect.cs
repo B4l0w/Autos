@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Auto
 {
     public class Connect
     {
+        public static MySqlConnection Connection;
         private string Host;
         private string Database;
         private string Username;
@@ -22,6 +24,8 @@ namespace Auto
             Password = "";
 
             ConnectionString = "SERVER=" + Host + ";DATABASE=" + Database + ";UID=" + Username + ";PASSWORD=" + Password + ";SslMode=None";
+
+            Connection = new MySqlConnection(ConnectionString);
         }
     }
 }
