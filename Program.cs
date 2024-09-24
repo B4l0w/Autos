@@ -3,9 +3,11 @@ using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace Auto
 {
@@ -56,6 +58,42 @@ namespace Auto
 
             conn.Connection.Close();
         }
+
+        public static void updatecar() {
+
+            int date;
+            int id;
+            conn.Connection.Open();
+
+            Console.WriteLine("Kérem az azonosítóját");
+            id= int.Parse(Console.ReadLine());
+            Console.WriteLine("Kérem a gyártási évet");
+            date = int.Parse(Console.ReadLine());
+
+            string sql = $"UPDATE `cars` SET `Date`={date} WHERE id={id} ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+
+            conn.Connection.Clone();
+        }
+
+        public static void deletecar()
+        {
+
+           
+            int id;
+            conn.Connection.Open();
+
+            Console.WriteLine("Kérem az azonosítóját");
+            id = int.Parse(Console.ReadLine());
+            
+
+            string sql = $"DELETE FROM `cars` WHERE id={id} ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+
+            conn.Connection.Clone();
+        }
         static void Main(string[] args)
         {
             feltolt();
@@ -63,7 +101,8 @@ namespace Auto
             {
                 Console.WriteLine($"Autó gyártója: {car.Brand}, motorszáma: {car.License}");
             }
-            addNewCar();
+            //addNewCar();
+            //updatecar();
             Console.ReadLine();
         }
     }
