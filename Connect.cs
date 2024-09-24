@@ -9,7 +9,7 @@ namespace Auto
 {
     public class Connect
     {
-        public static MySqlConnection Connection;
+        public MySqlConnection Connection;
         private string Host;
         private string Database;
         private string Username;
