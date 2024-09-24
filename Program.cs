@@ -80,13 +80,13 @@ namespace Auto
         public static void deletecar()
         {
 
-           
+
             int id;
             conn.Connection.Open();
 
             Console.WriteLine("Kérem az azonosítóját");
             id = int.Parse(Console.ReadLine());
-            
+
 
             string sql = $"DELETE FROM `cars` WHERE id={id} ";
             MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
@@ -103,6 +103,7 @@ namespace Auto
             }
             //addNewCar();
             //updatecar();
+            deletecar();
             Console.ReadLine();
         }
     }
